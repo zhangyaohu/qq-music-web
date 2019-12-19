@@ -1,0 +1,60 @@
+{
+  "name": "qq-music-web",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "description": "模仿qq音乐的一个小项目",
+  "dependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/runtime": "^7.7.6",
+    "autoprefixer": "^9.7.3",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.4.0",
+    "element-ui": "^2.13.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "postcss": "^7.0.25",
+    "postcss-loader": "^3.0.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.8.3",
+    "vue-router": "^3.1.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.3",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "add": "^2.0.6",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-component": "^1.1.1",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.2",
+    "portfinder": "^1.0.25",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "style-loader": "^1.0.2",
+    "url-loader": "^3.0.0",
+    "webpack-cli": "^3.3.10",
+    "yarn": "^1.21.1"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --colors  --config script/webpack.config.js"
+  },
+  "author": "",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

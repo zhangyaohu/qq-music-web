@@ -1,0 +1,83 @@
+.header{
+	&_container{
+		background-color: #fff;
+    position: relative;
+    z-index: 4;
+	}
+
+	&_inner{
+		max-width: 1200px;
+		margin: 0 auto;
+		position: relative;
+		padding-top: 90px;
+	}
+
+	&_title{
+		position: absolute;
+		top: 22px;
+		left:0px;
+	}
+
+	&_nav{
+		position: absolute;
+		left: 198px;
+		top: 0;
+		
+		&__item{
+			display: inline-block;
+			vertical-align: top;
+			font-size: 18px;
+			padding: 0 20px;
+			height: 90px;
+			line-height: 90px;
+			text-align: center;
+		}
+	}
+
+	&_search{
+		position: absolute;
+    top: 0;
+    right: 0;
+    height: 90px;
+    line-height: 90px;
+    right: 284px;
+	}
+	
+	&_login{
+		position: absolute;
+    top: 0;
+    right: 0;
+    height: 90px;
+    line-height: 90px;
+	}
+
+	&_btn{
+		padding: 12px 10px;
+
+		&__center{
+			padding: 0px 10px;
+			.header_btn{
+				background-color: #31c27c;
+				 border: 1px solid #31c27c;
+				 color: #fff;
+			}
+		}
+	}
+
+	&_menu{
+		position: relative;
+		height: 51px;
+		line-height: 51px;
+		border-top: 1px solid #31c27c;
+		padding-left: 230px;
+		margin-right: -50px;
+		
+		&__link{
+			display: inline-block;
+			padding: 0px 20px;
+			&:first-child{
+				padding-left: 0px;
+			}
+		}
+	}
+}
