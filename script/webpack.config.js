@@ -91,10 +91,21 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file-loader|url-loader',
-				options: {
-						name: '[name].[ext]?[hash]'
-				}
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							name: '[name].[ext]?[hash]',
+					  }
+					},
+					{
+						loader: 'file-loader',
+						options: {
+								publicPath: '../',
+						}
+					}
+				],
 	  	}
 		]
 	},
@@ -123,7 +134,14 @@ module.exports = {
 			template: 'index.html',
 			inject: true,
 			cdn
-		})
+		}),
+		new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    })
 	],
 	 devServer: {
 		  port: process.env.PORT,

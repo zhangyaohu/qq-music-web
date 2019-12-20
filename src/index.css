@@ -242,6 +242,11 @@ li{
   display: inline-block;
   padding: 0px 20px;
   font-size: 15px;
+  cursor: pointer;
+}
+
+.section_menu__link:hover{
+  color: #31c27c;
 }
 
 .section_menu__link:first-child{
@@ -260,5 +265,6 @@ li{
 
 .carousel-item{
   display: inline-block;
-  width: 19%;
+  width: 18%;
+  padding-right: 15px;
 }
