@@ -20,7 +20,7 @@ const cdn = [
 ]
 
 const portfinder = require('portfinder')
-portfinder.basePort = process.env.PORT || 7777;
+portfinder.basePort = process.env.PORT && process.env.PORT || 7777;
 
 portfinder.getPort((err, port) => {
   if (err) {
@@ -32,7 +32,7 @@ portfinder.getPort((err, port) => {
       
   }
 })
-
+console.log(resolve('./public'))
 module.exports = {
 	entry: {
     main: resolve('./src/main.js')
@@ -94,24 +94,23 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
 					{
+						loader: 'file-loader',
 						loader: 'url-loader',
 						options: {
-							name: '[name].[ext]?[hash]',
+							esModule: false, 
+							name: "images/[name]-[hash:8].[ext]",
+							outputPath: '/images/',
+							pulicPath: './'
 					  }
 					},
-					{
-						loader: 'file-loader',
-						options: {
-								publicPath: '../',
-						}
-					}
 				],
 	  	}
 		]
 	},
 	resolve: {
     alias: {
-			'src': resolve('./src')
+			'src': resolve('./src'),
+			'assets': resolve('./src/views/images')
 		},
 		extensions: ['.js', '.vue', '.less'],
 	},
@@ -131,11 +130,11 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'qq-music-app',
 			filename: 'index.html',
-			template: 'index.html',
+			template: 'public/index.html',
 			inject: true,
 			cdn
 		}),
-		new MiniCssExtractPlugin({
+	 new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
       filename: '[name].css',

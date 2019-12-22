@@ -31,6 +31,9 @@
           <el-carousel-item v-for="(item, i) in 2" :key="i">
             <li class="carousel-item" v-for="(item, index) in dataSource[i]" :key="index">
               <img :src="item.cover" class="carousel_item_image" />
+              <div class="cover_play">
+                <img src="../../images/cover_play.png" style="background-size: 50"/>
+              </div>
             </li>
           </el-carousel-item>
         </el-carousel>
@@ -142,5 +145,24 @@ export default {
   -webkit-transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
   cursor: pointer;
   opacity: 0.8;
+}
+
+.carousel-item{
+  position: relative;
+  &:hover{
+    .cover_play{
+      display: inline-block;
+      position: absolute;
+      top: 35%;
+      left: 65px;
+      transform: scale(1.07);
+      transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
+      opacity: 1;
+    }
+  }
+}
+
+.cover_play{
+  display: none;
 }
 </style>

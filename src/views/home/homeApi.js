@@ -6,6 +6,13 @@ const homeApi = {
 		.then((resp) => {
 			return resp;
 		})
+	},
+
+	getMv: (param) => {
+		return Http.get('/mv/all', param)
+		.then((resp) => {
+			return resp;
+		})
 	}
 }
 

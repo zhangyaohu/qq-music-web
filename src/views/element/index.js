@@ -3,7 +3,8 @@ import {
 	Button,
 	Autocomplete,
 	Carousel,
-	CarouselItem
+	CarouselItem,
+	Icon
 } from 'element-ui';
 import Vue from 'vue';
 
@@ -14,5 +15,6 @@ export default {
 		Vue.use(Button);
 		Vue.use(Carousel);
 		Vue.use(CarouselItem);
+		Vue.use(Icon);
 	}
 }

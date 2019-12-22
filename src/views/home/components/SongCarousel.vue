@@ -24,6 +24,9 @@
                     :src="`//y.gtimg.cn/music/photo_new/T002R90x90M000${item.album.pmid}.jpg`"
                     class="carousel_item_image"
                   />
+                  <div class="cover_play">
+                    <img src="../../images/cover_play.png" style="background-size: 50"/>
+                  </div>
                 </router-link>
                 <div class="decsription">
                   <p class="title">{{item.name}}</p>
@@ -115,6 +118,7 @@ export default {
 .carousel-item {
   padding-top: 20px;
   width: calc((100% - 60px) / 3);
+  position: relative;
 }
 
 .carousel-content{
@@ -152,5 +156,26 @@ export default {
   -webkit-transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
   cursor: pointer;
   opacity: 0.8;
+}
+
+.link{
+  position: relative;
+  &:hover{
+    .cover_play{
+      display: inline-block;
+      position: absolute;
+      top: 12%;
+      left: 12px;
+      transform: scale(1.07);
+      transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
+      opacity: 0.8;
+    }
+  }
+}
+
+.cover_play{
+  display: none;
+  width: 50px;
+  height: 50px;
 }
 </style>

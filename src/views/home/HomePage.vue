@@ -5,7 +5,7 @@
 		<focus-carousel :param="{'data': dbData.focusList}"></focus-carousel>
 	  <new-album-carousel :param="{'data': dbData.newAlbumList, 'category': dbData.newAlbumTagList}"></new-album-carousel>
 		<top-list :param="{'data': dbData.topList}"></top-list>
-		<song-sheet></song-sheet>
+		<mv-carousel :param="{'data': dbData.mvList}"></mv-carousel>
 	</div>
 </template>
 
@@ -13,6 +13,7 @@
 import NewAlbumCarousel from 'src/views/home/components/NewAlbumCarousel'
 import FocusCarousel from 'src/views/home/components/FocusCarousel'
 import SongCarousel from 'src/views/home/components/SongCarousel'
+import MvCarousel from 'src/views/home/components/MVCarousel'
 import SongSheet from 'src/views/home/components/SongSheet';
 import topList from 'src/views/home/components/topList'
 import Root from 'src/views/store/Root';
@@ -33,7 +34,8 @@ export default {
 		SongCarousel,
 		FocusCarousel,
 		NewAlbumCarousel,
-		topList
+		topList,
+		MvCarousel
 	},
 	
 	mounted() {
@@ -80,6 +82,17 @@ export default {
 						"data": resp.category.data.category
 					})
 			 })
+			  let mvParam = {
+				 cmd: 'shoubo',
+         lan: 'all'
+			 }
+			 HomeApi.getMv(mvParam)
+			   .then((resp) => {
+					 this.updateDataList({
+						"dataName": "mvList",
+						"data": resp.data.mvlist
+					})
+				 })
 		}
 	}
 }

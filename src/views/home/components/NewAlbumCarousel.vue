@@ -2,7 +2,7 @@
   <div class="container">
     <div class="section_inner">
       <div class="section_title">
-        <h2>新歌首发</h2>
+        <h2>新碟首发</h2>
       </div>
       <div class="section_tab">
         <li
@@ -28,6 +28,9 @@
                   <p class="author">{{item.singers[0].name}}</p>
                 </div>
               </div>
+              <div class="cover_play">
+                  <img src="../../images/cover_play.png"/>
+                </div>
             </div>
       </div>
     </div>
@@ -104,6 +107,18 @@ export default {
 
 .carousel-item {
   padding-top: 20px;
+  position: relative;
+   &:hover{
+    .cover_play{
+      display: inline-block;
+      position: absolute;
+      top: 35%;
+      left: 66px;
+      transform: scale(1.07);
+      transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
+      opacity: 1;
+    }
+  }
 }
 
 .carousel-content{
@@ -141,5 +156,9 @@ export default {
   -webkit-transition: transfrom 0.75s cubiz-bezier(0, 1, 0.75, 1), opacity 0.5;
   cursor: pointer;
   opacity: 0.8;
+}
+
+.cover_play{
+  display: none;
 }
 </style>

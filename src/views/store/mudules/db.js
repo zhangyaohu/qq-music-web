@@ -10,7 +10,11 @@ const state = {
 	newAlbumTagList: [],
 	focusList: [],
 	categoryList: [],
-	lanList: []
+	lanList: [],
+	searchSongList: [],
+	searchMvList: [],
+	searchSingerList: [],
+	searchAlbumList: []
 }
 
 const actions = {
