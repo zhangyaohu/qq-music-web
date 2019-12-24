@@ -72,8 +72,8 @@
 				</router-link>
 			</ul>
 			<ul class="header_menu">
-				<li v-for="(item, index) in subMenuList" :key="index" class="header_menu__link">
-          <router-link :to='item.path'>
+				<li v-for="(item, index) in subMenuList" :key="index" class="header_menu__link" >
+          <router-link :to='item.path' :class="{'active': item.path === $route.path}">
             {{item.title}}
 					</router-link>
 				</li>
@@ -92,13 +92,14 @@ export default {
 
   data() {
 		return{
+			currentPath: '/home',
 			subMenuList: [
 				{
 					path: '/home',
 					title: '首页'
 				},
 				{
-					path: '/home',
+					path: '/singer',
 					title: '歌手'
 				},
 				{
@@ -135,8 +136,10 @@ export default {
 		}
 	},
 	mounted() {
-   this.init();
+	 this.init();
+	 console.log(this.$router);
 	},
+
 	methods: {
 		singleToSize,
 		handleIconClick() {
@@ -174,8 +177,8 @@ export default {
           this.updateDataList({
         'dataName': 'searchSongList',
         'data': resp.data.hotkey.splice(0, 5)
-      })
-			 })
+        })
+		  })
 		}
 	}
 }
@@ -201,5 +204,9 @@ export default {
     color: #999;
 		min-width: 30%;
 		}
+	}
+
+	.active{
+		color: #31c27c;
 	}
 </style>

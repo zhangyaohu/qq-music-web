@@ -18,30 +18,34 @@ const cdn = [
   "https://cdn.bootcss.com/vue-i18n/5.0.3/vue-i18n.min.js",
   "https://cdn.bootcss.com/echarts/4.2.1/echarts.min.js"
 ]
-
+console.log(path.resolve(__dirname, 'src/views/images'));
 const portfinder = require('portfinder')
 portfinder.basePort = process.env.PORT && process.env.PORT || 7777;
+const publicPath = isEnvProduction
+  ? '/'
+  : isEnvDevelopment && '/';
 
 portfinder.getPort((err, port) => {
   if (err) {
     reject(err)
   } else {
-      // 在进程中存储下当前最新端口 
+      // 在进程中存储下当前最新端口
       process.env.PORT = port;
       // 把 module.exports 中逻辑放在里面来
-      
+
   }
 })
-console.log(resolve('./public'))
 module.exports = {
 	entry: {
     main: resolve('./src/main.js')
 	},
 	output: {
-		path: resolve('./public'),
+    publicPath: publicPath,
+		path: resolve('./dist'),
     filename: isEnvProduction
-		? 'static/js/[name].[contenthash:8].js'
-		: isEnvDevelopment && 'static/js/bundle.js',
+		? 'js/[name].[contenthash:8].js'
+		: isEnvDevelopment && 'js/bundle.js',
+    chunkFilename: isEnvProduction ? 'js/[name].js' : 'js/[name].js'
 	},
   module: {
 		rules:[
@@ -55,12 +59,12 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(less)$/,
+				test: /\.(less)$/g,
 				exclude: /node_modules/,
 				use: [
 					isEnvProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
 					{
-						loader: 'css-loader'
+						loader: 'css-loader',
 					},
 					{
             loader: 'less-loader',
@@ -69,14 +73,22 @@ module.exports = {
 			},
 			{
         test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-        loader: 'file-loader'
+        use:[
+          {
+            loader: 'url-loader',
+            options: {
+              esModule: false,
+              name: 'font/[name].[hash:8].[ext]',
+            }
+          }
+				]
       },
 		  {
 				test: /\.(vue)$/,
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'vue-loader'
+						loader: 'vue-loader',
 					}
 				]
 			},
@@ -85,22 +97,22 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'babel-loader'
+						loader: 'babel-loader',
 					}
 				]
 			},
 			{
-				test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(bmp|png|jpg|jpeg|ico|gif)$/,
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'file-loader',
 						loader: 'url-loader',
 						options: {
-							esModule: false, 
-							name: "images/[name]-[hash:8].[ext]",
-							outputPath: '/images/',
-							pulicPath: './'
+							esModule: false,
+              name: 'img/[name].[hash:8].[ext]',
+              options: {
+								name: '[name].[hash:8].[ext]',
+              }
 					  }
 					},
 				],
@@ -110,7 +122,7 @@ module.exports = {
 	resolve: {
     alias: {
 			'src': resolve('./src'),
-			'assets': resolve('./src/views/images')
+			'~': path.resolve('./'+__dirname, 'src/views/images')
 		},
 		extensions: ['.js', '.vue', '.less'],
 	},
@@ -125,49 +137,32 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("development") }),
 		new HtmlWebpackPlugin({
 			title: 'qq-music-app',
 			filename: 'index.html',
 			template: 'public/index.html',
 			inject: true,
-			cdn
+			cdn,
+      chunksSortMode: 'dependency',
+			minify: isEnvProduction ?  {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+          } : undefined,
 		}),
 	 new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     })
-	],
-	 devServer: {
-		  port: process.env.PORT,
-		  host: '0.0.0.0',
-		  open: `http://localhost:${process.env.PORT}`,
-		  stats: {
-		   hash: false,
-		   builtAt: false,
-		   version: false,
-		   modules: false,
-		   children: false, ////解决类似Entrypoint undefined = index.html和Entrypoint mini-css-extract-plugin = *的警告
-		   entrypoints: false,
-		   colors: {
-		    green: '\u001b[32m',
-		    yellow: '\u001b[32m',
-		   }
-		  },
-		  proxy: {
-		   '/api': {
-		    target: 'http://localhost:3000',
-		    changeOrigin: true,
-	    	pathRewrite: {'^/api' : ''}
-		   }
-		  },
-		  inline: true,
-		  compress: false,
-		  disableHostCheck: true,
-		  historyApiFallback: true,
-		 },
+	]
 }

@@ -10,11 +10,11 @@
             <div :class="[`bg-pic-${index}`, 'bg-pic']">
               <h3 class="carousel-title">
                 <div> {{dataSource[0].groupName}}</div>
-                 <h4>{{item.title}}</h4> 
+                 <h4>{{item.title}}</h4>
               </h3>
               <div class="toplist-line"></div>
               <ul class="toplist-songlist">
-                <li class="toplist__song" v-for="(it, index) in item.song"> 
+                <li class="toplist__song" v-for="(it, index) in item.song">
                    <div class="toplist__song__title">{{it.rank}}{{it.title}}</div>
                    <div class="toplist__song__name">{{it.singerName}}</div>
                 </li>
@@ -22,7 +22,7 @@
             </div>
           </div>
            <div class="cover_play">
-              <img src="../../images/cover_play.png" style="background-size: 50"/>
+              <img src="../../images/cover_play.png"/>
             </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
   },
 
   methods: {
-  
+
   },
   watch: {
     "param.data": function(newValue, oldValue) {
@@ -68,7 +68,7 @@ export default {
 
 <style lang="less" scoped>
  .bg-pic-0{
-	  background-image: url('../../images/bg_index_top.jpg');
+    background-image: url('../../images/bg_index_top.jpg');
     position: relative;
     top: 0;
     left: 0;
@@ -105,7 +105,7 @@ export default {
     color: #fff;
 
     &:last-child{
-      
+
     }
  }
 

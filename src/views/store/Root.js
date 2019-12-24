@@ -3,7 +3,8 @@ import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
 	methods: {
     ...mapActions([
-			'updateDataList'
+			'updateDataList',
+			'updateDataObject'
 		])
 	},
 
