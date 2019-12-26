@@ -4,7 +4,8 @@ import {
 	Autocomplete,
 	Carousel,
 	CarouselItem,
-	Icon
+	Icon,
+	Pagination
 } from 'element-ui';
 import Vue from 'vue';
 
@@ -16,5 +17,6 @@ export default {
 		Vue.use(Carousel);
 		Vue.use(CarouselItem);
 		Vue.use(Icon);
+		Vue.use(Pagination);
 	}
 }

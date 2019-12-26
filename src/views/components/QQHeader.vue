@@ -103,11 +103,11 @@ export default {
 					title: '歌手'
 				},
 				{
-					path: '/home',
+					path: '/new_album',
 					title: '新碟'
 				},
 				{
-					path: '/home',
+					path: '/top_list',
 					title: '排行榜'
 				},
 				{

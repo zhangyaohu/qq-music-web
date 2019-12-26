@@ -22,7 +22,7 @@
             </div>
           </div>
            <div class="cover_play">
-              <img src="../../images/cover_play.png"/>
+              <img src="~images/cover_play.png"/>
             </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default {
 
 <style lang="less" scoped>
  .bg-pic-0{
-    background-image: url('../../images/bg_index_top.jpg');
+    background-image: url('~images/bg_index_top.jpg');
     position: relative;
     top: 0;
     left: 0;
@@ -78,20 +78,20 @@ export default {
  }
 
  .bg-pic-1{
-	  background-image: url('../../images/bg_index_top.jpg');
+	  background-image: url('~images/bg_index_top.jpg');
     background-position: 25% 0%;
  }
  .bg-pic-2{
-	  background-image: url('../../images/bg_index_top.jpg');
+	  background-image: url('~images/bg_index_top.jpg');
     background-position: 50% 0%;
  }
  .bg-pic-3{
-	  background-image: url('../../images/bg_index_top.jpg');
+	  background-image: url('~images/bg_index_top.jpg');
     background-position: 75% 0%;
  }
 
  .bg-pic-4{
-	  background-image: url('../../images/bg_index_top.jpg');
+	  background-image: url('~images/bg_index_top.jpg');
     background-position: 100% 0%;
  }
 

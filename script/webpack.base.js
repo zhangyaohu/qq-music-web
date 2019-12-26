@@ -122,7 +122,7 @@ module.exports = {
 	resolve: {
     alias: {
 			'src': resolve('./src'),
-			'~': path.resolve('./'+__dirname, 'src/views/images')
+			'images': resolve('./src/views/images')
 		},
 		extensions: ['.js', '.vue', '.less'],
 	},

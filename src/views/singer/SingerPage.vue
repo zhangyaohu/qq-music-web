@@ -46,13 +46,14 @@
           >{{genre.name}}</li>
         </ul>
       </div>
-      <div class="singer_list">
+      <div class="singer_list" v-if="index === -100">
         <ul>
           <li v-for="(singer, index) in showSingerList" :key="index" class="singer_list__item">
             <div class="singer_list__item_box">
               <a>
                 <img
                   class="singer_img"
+                  :onerror="img404"
                   :src="`//y.gtimg.cn/music/photo_new/T001R150x150M000${singer.singer_mid}.jpg`"
                 />
               </a>
@@ -62,38 +63,54 @@
         </ul>
       </div>
       <ul class="singer_list__text">
-				<li v-for="(si, index) in dbData.singerList" :key="index" class="singer_list__text_item">
-					<span class="singer_list__item_desc">{{si.singer_name}}</span>
-				</li>
-				<Pagination :currentPage="1" 
-				            :pageSize="10"
-										:currentChange="handleCurrentChange"
-										:total="100"></Pagination>
-			</ul>
+        <li v-for="(si, index) in dbData.singerList" :key="index" class="singer_list__text_item">
+          <span class="singer_list__item_desc">{{si.singer_name}}</span>
+        </li>
+        <div class="pagination_content">
+          <el-pagination
+            :current-page="pageIndex"
+            :pageSize="10"
+            @current-change="handleCurrentChange"
+            layout="prev, pager, next"
+            :total="total"
+          ></el-pagination>
+        </div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import Pagination from 'src/views/components/pagination/Pagination';
 import SingerApi from "src/views/singer/singerApi";
 import Root from "src/views/store/Root";
 
 export default {
   name: "SingerPage",
 
-	mixins: [Root],
-	
-	components:{
-		Pagination
-	},
+  mixins: [Root],
+
+  components: {},
 
   data() {
     return {
       currentIndex: 0,
       currentAreaIndex: 0,
       currentSexIndex: 0,
-      currentGenreIndex: 0
+      currentGenreIndex: 0,
+      total: 0,
+      pageIndex: 1,
+      area: -100,
+      sex: -100,
+      genre: -100,
+      index: -100,
+      img404: "this.src='" + require('../images/singer_404.png') + "'",
+      param: {
+        comm: { ct: 24, cv: 0 },
+        singerList: {
+          module: "Music.SingerListServer",
+          method: "get_singer_list"
+        }
+      }
     };
   },
 
@@ -104,29 +121,24 @@ export default {
   computed: {
     showSingerList() {
       return this.dbData.singerList.splice(0, 10);
-		},
-		handleCurrentChange() {
-
-		}
+    }
   },
   methods: {
+    handleCurrentChange(e) {
+      this.pageIndex = e;
+      this.init();
+    },
+
     init() {
-      let param = {
-        comm: { ct: 24, cv: 0 },
-        singerList: {
-          module: "Music.SingerListServer",
-          method: "get_singer_list",
-          param: {
-            area: -100,
-            sex: -100,
-            genre: -100,
-            index: -100,
-            sin: 0,
-            cur_page: 1
-          }
-        }
-      };
-      SingerApi.getSingerList({ data: param }).then(resp => {
+      this.param.singerList['param'] = {
+        area: this.area,
+        sex: this.sex,
+        genre: this.genre,
+        index: this.index,
+        sin: (this.pageIndex - 1) * 80,
+        cur_page: this.pageIndex
+      }
+      SingerApi.getSingerList({ data: this.param}).then(resp => {
         this.updateDataList({
           dataName: "singerList",
           data: resp.singerlist
@@ -135,19 +147,28 @@ export default {
           name: "singerTagsObj",
           data: resp.tags
         });
+        this.total = resp.total;
       });
     },
     handleIndexChange(it, index) {
+      this.index = it.id;
       this.currentIndex = index;
+      this.init()
     },
     handleAreaChange(it, index) {
       this.currentAreaIndex = index;
+      this.area = it.id;
+      this.init();
     },
     handleSexChange(it, index) {
       this.currentSexIndex = index;
+      this.sex = it.id;
+      this.init();
     },
     handleGenreChange(it, index) {
       this.currentGenreIndex = index;
+      this.genre = it.id;
+      this.init();
     }
   }
 };
@@ -230,17 +251,17 @@ export default {
       background-color: #fbfbfd;
       min-height: 195px;
       padding: 25px 0;
-			overflow: hidden;
-			text-align: center;
-		}
-		&_desc{
-			margin-top: 20px;
-			display: inline-block;
-			cursor: pointer;
-			&:hover{
-				color: #31c27c;
-			}
-		}
+      overflow: hidden;
+      text-align: center;
+    }
+    &_desc {
+      margin-top: 20px;
+      display: inline-block;
+      cursor: pointer;
+      &:hover {
+        color: #31c27c;
+      }
+    }
   }
 }
 
@@ -248,17 +269,17 @@ export default {
   display: block;
   width: 140px;
   height: 140px;
-	border-radius: 126px;
-	margin: 0 auto;
+  border-radius: 126px;
+  margin: 0 auto;
 }
 
-.singer_list__text{
-	padding-top: 20px;
+.singer_list__text {
+  padding-top: 20px;
 
-	&_item{
-		display: inline-block;
-		width: 20%;
-		text-align: center
-	}
+  &_item {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+  }
 }
 </style>

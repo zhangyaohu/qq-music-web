@@ -268,3 +268,13 @@ li{
   width: 18%;
   padding-right: 15px;
 }
+
+.pagination_content{
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.el-pager li.active{
+  background-color: #31c27c;
+  color: #fff!important;
+}
