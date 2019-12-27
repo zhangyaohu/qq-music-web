@@ -35,5 +35,12 @@ export default [
 		meta: {
 			title: '排行榜'
 		}
+	},
+	{
+		path: '/top_list/:topId',
+		component: TopListPage,
+		meta: {
+			title: '排行榜'
+		}
 	}
 ]

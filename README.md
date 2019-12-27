@@ -2,6 +2,7 @@
 ![新歌首发](https://github.com/zhangyaohu/qq-music-web/blob/master/src/views/images/qq.02.png)
 ![歌单推荐](https://github.com/zhangyaohu/qq-music-web/blob/master/src/views/images/qq.03.png)
 ![新碟](https://github.com/zhangyaohu/qq-music-web/blob/master/src/views/images/qq.04.png)
+![排行榜](https://github.com/zhangyaohu/qq-music-web/blob/master/src/views/images/qq.05.png)
 ## 项目介绍
 这是一个qq音乐模仿项目， 其中运用到vuex, axios, vue, elementui, vue-router， webpack技术
 github路径 [https://github.com/zhangyaohu/qq-music-web.git]

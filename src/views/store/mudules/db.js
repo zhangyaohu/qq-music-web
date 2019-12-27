@@ -17,6 +17,7 @@ const state = {
 	searchAlbumList: [],
 	singerList: [],
 	singerTagsObj: {},
+	topListObj: {}
 }
 
 const actions = {

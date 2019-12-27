@@ -1,0 +1,243 @@
+[
+	{
+		"title": "巅峰榜",
+		"type": "btn",
+		"children":[
+			{
+				"title": "巅峰榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "4",
+				"period": ""
+			},
+			{
+				"title": "热歌榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "26",
+				"period": "2019_51"
+			},
+			{
+				"title": "新歌榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "27",
+				"period": ""
+			},
+			{
+				"title": "飙升榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "62",
+				"period": ""
+			},
+			{
+				"title": "听歌识曲榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "67",
+				"period": ""
+			},
+			{
+				"title": "MV榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "",
+				"period": "5"
+			}
+		]
+	},
+	{
+		"title": "地区榜",
+		"type": "btn",
+		"children":[
+			{
+				"title": "内地榜",
+				"type": "link",
+				"topId": "5",
+				"path": "top_list",
+				"period": ""
+			},
+			{
+				"title": "香港地区榜",
+				"type": "link",
+				"topId": "59",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "台湾地区榜",
+				"type": "link",
+				"topId": "61",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "欧美榜",
+				"type": "link",
+				"topId": "3",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "韩国榜",
+				"type": "link",
+				"topId": "16",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "日本榜",
+				"type": "link",
+				"topId": "17",
+				"path": "top_list",
+				"period": "2019_51"
+			}
+		]
+	},
+	{
+		"title": "特色榜",
+		"type": "btn",
+		"children":[
+			{
+				"title": "抖音排行榜",
+				"type": "link",
+				"topId": "60",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "网络歌曲榜",
+				"type": "link",
+				"topId": "28",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "电音榜",
+				"type": "link",
+				"topId": "57",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "ACG新歌榜",
+				"type": "link",
+				"topId": "66",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "国风热歌榜",
+				"type": "link",
+				"topId": "65",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "综艺新歌榜",
+				"type": "link",
+				"topId": "64",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "影视金曲榜",
+				"type": "link",
+				"topId": "29",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "腾讯音乐原创榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "52",
+				"period": "2019_51"
+			},
+			{
+				"title": "k歌金曲榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "36",
+				"period": "2019_51"
+			},
+			{
+				"title": "说唱榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "58",
+				"period": "2019_51"
+			}
+		]
+	},
+	{
+		"title": "全球榜",
+		"type": "btn",
+		"children":[
+			{
+				"title": "美国公告牌榜",
+				"type": "link",
+				"topId": "108",
+				"path": "top_list",
+				"period": "2019_52"
+			},
+			{
+				"title": "美国iTunes榜",
+				"type": "link",
+				"topId": "123",
+				"path": "top_list",
+				"period": "2019_45"
+			},
+			{
+				"title": "韩国Melon榜",
+				"type": "link",
+				"topId": "129",
+				"path": "top_list",
+				"period": "2019_51"
+			},
+			{
+				"title": "英国UK榜",
+				"type": "link",
+				"topId": "107",
+				"path": "top_list",
+				"period": "2019_50"
+			},
+			{
+				"title": "日本公信榜",
+				"type": "link",
+				"path": "top_list",
+				"topId": "105",
+				"period": "2019_52"
+			},
+			{
+				"title": "JOOX本地热播榜",
+				"type": "link",
+				"topId": "126",
+				"path": "top_list",
+				"period": "2019_50"
+			},
+			{
+				"title": "香港商台榜",
+				"type": "link",
+				"topId": "114",
+				"path": "top_list",
+				"period": "2019_50"
+			},
+			{
+				"title": "台湾KKBOX榜",
+				"type": "link",
+				"topId": "127",
+				"path": "top_list",
+				"period": "2019_50"
+			},
+			{
+				"title": "YouTube音乐排行榜",
+				"type": "link",
+				"topId": "128",
+				"path": "top_list",
+				"period": "2019_50"
+			}
+		]
+	}
+]

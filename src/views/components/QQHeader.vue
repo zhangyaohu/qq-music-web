@@ -73,7 +73,7 @@
 			</ul>
 			<ul class="header_menu">
 				<li v-for="(item, index) in subMenuList" :key="index" class="header_menu__link" >
-          <router-link :to='item.path' :class="{'active': item.path === $route.path}">
+          <router-link :to='item.path' :class="{'active': $route.path.indexOf(item.path) > -1}">
             {{item.title}}
 					</router-link>
 				</li>
@@ -107,7 +107,7 @@ export default {
 					title: '新碟'
 				},
 				{
-					path: '/top_list',
+					path: '/top_list/4',
 					title: '排行榜'
 				},
 				{
