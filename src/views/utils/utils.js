@@ -30,3 +30,23 @@ export let formatDateTime = function(date, fmt) { //author: meizz
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
 }  
+
+export let setCookie = function(cname, cvalue, exdays){
+  var d = new Date();
+  d.setTime(d.getTime()+(exdays*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  if( document.cookie.indexOf(cname) > -1) {
+    document.cookie = document.cookie.replace(eval('/(?<='+(cname)+'=)([^;]+)/g'), `${cvalue}`)
+  }else
+  document.cookie += cname + "=" + cvalue + "; " + expires;
+}
+
+export let getCookie = function(cname) {
+  let cookieArr = document.cookie.split(';');
+  for(let i in cookieArr){
+     let cArr = cookieArr[i].split('=');
+     if(cArr[0] === cname){
+       return decodeURI(cArr[1]);
+     }
+  }
+}

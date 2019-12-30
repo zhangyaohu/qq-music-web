@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 let config = {
 	baseURL: '/api',
 	transformRequest: [

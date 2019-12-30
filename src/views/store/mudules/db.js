@@ -16,6 +16,7 @@ const state = {
 	searchSingerList: [],
 	searchAlbumList: [],
 	singerList: [],
+	commentList: [],
 	singerTagsObj: {},
 	topListObj: {}
 }

@@ -1,0 +1,30 @@
+{
+  "id": "1589585",
+  "name": "qq",
+  "font_family": "iconfont",
+  "css_prefix_text": "qq-icon__",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7417081",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "10809844",
+      "name": "赞 点赞",
+      "font_class": "changyongtubiao-xianxingdaochu-zhuanqu-",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "11494984",
+      "name": "更多2",
+      "font_class": "gengduo",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    }
+  ]
+}

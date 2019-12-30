@@ -5,6 +5,18 @@ const TopListApi = {
 		.then((resp) => {
       return resp;
 		})
+	},
+	getCommentList: (param) => {
+		return HttpApi.get('/top/comment', param)
+		.then(resp => {
+			return resp;
+		})
+	},
+	getParise: (param) => {
+		return HttpApi.get('/top/praise', param)
+		.then(resp => {
+			return resp;
+		})
 	}
 }
 
