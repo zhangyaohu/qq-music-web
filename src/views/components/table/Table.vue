@@ -30,9 +30,9 @@ export default {
 							 {
 								 this.columns.map((column, cI) => {
                  if(!column.render){
-									 return <li class="table_body__item" style={{width: column.width}}>{data[column.key]}</li>
+									 return <li class="table_body__item" style={{width: column.width}} title={data[column.key]}>{data[column.key]}</li>
 								 }else if(column.render){
-									 return <li class="table_body__item" style={{width: column.width}}>{column.render(data, column.key)}</li>
+									 return <li class="table_body__item" style={{width: column.width}}>{column.render(data, column.key, dI)}</li>
 								 }
 						   })
 							 }
@@ -58,30 +58,45 @@ export default {
 <style lang="less" scoped>
  .table_header{
 	 width: 100%;
+	 overflow: hidden;
 
 	 &__item{
 		 display: table-cell;
 	 }
 
 	 &_tr{
+		 table-layout: fixed;
 		 display: table;
 		 width: 100%;
-		 padding: 20px 0px;
+		 padding: 20px 20px;
+		 background-color: #fbfbfd;
 	 }
  }
 
  .table_body{
 	 display: block;
 	 width: 100%;
+	 table-layout: fixed;
+	  overflow: hidden;
 
 	 &__item{
 		 display: table-cell;
+		 white-space: nowrap;
+		 text-overflow: ellipsis;
+		 overflow: hidden;
 	 }
 
 	 &_tr{
 		 display: table;
 			width: 100%;
-			padding: 10px 0px;
+			padding: 20px 20px;
+			table-layout: fixed;
+		 &:nth-child(2n) {
+			 background-color: #fbfbfd;
+		 }
+		 &:nth-child(2n + 1) {
+			  background-color: #fff;
+		 }
 	 }
  }
 </style>

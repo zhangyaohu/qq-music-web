@@ -55,7 +55,7 @@ export default {
   props: {
     sourceData: {
       type: Array,
-      default: []
+			default: []
     },
     onChange: {
       type: Function

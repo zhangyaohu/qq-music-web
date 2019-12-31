@@ -2,6 +2,8 @@ const HomePage = () =>  import(/* webpackChunkName: "HOMEPAGE" */ 'src/views/hom
 const SingerPage = () => import(/*webpackChunkName: "SINGERPAGE"*/'src/views/singer/SingerPage');
 const NewAlbumPage = () => import(/*webpackChunkName: "NEWALBUMPAGE"*/'src/views/album/NewAlbum');
 const TopListPage = () => import(/*webpackChunkName: "TOPLISTPAGE"*/'src/views/topList/TopListPage');
+const SongDetailPage = () => import(/*webpackChunkName: "SONGDETAILPAGE"*/'src/views/detail/SongDetail');
+const LyricDetailPage = () => import(/*webpackChunkName: "LYRICDETAILPAGE"*/'src/views/detail/LyricDetail')
 
 export default [
 	{
@@ -41,6 +43,20 @@ export default [
 		component: TopListPage,
 		meta: {
 			title: '排行榜'
+		}
+	},
+	{
+		path: '/sing_detail/:id',
+		component: SongDetailPage,
+		meta: {
+			title: '专辑详情'
+		}
+	},
+	{
+		path: '/lyric_detail/:id',
+		component: LyricDetailPage,
+		meta: {
+			title: '歌词详情'
 		}
 	}
 ]

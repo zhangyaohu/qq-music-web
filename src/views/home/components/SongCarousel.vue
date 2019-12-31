@@ -29,7 +29,7 @@
                   </div>
                 </router-link>
                 <div class="decsription">
-                  <p class="title">{{item.name}}</p>
+                  <p class="title" @click="goToLyricDetail(item)">{{item.name}}</p>
                   <p class="author">{{item.singer[0].name}}</p>
                 </div>
               </div>
@@ -88,16 +88,19 @@ export default {
             data: resp.new_song.data.songlist
           });
         });
+    },
+    goToLyricDetail(item){
+      this.$router.push(`lyric_detail/${item.id}`)
     }
   },
   watch: {
     "param.data": function(newValue, oldValue) {
-      if (_.isEqual(newValue, oldValue)) return;
+      // if (_.isEqual(newValue, oldValue)) return;
         this.dataSource = newValue;
     },
 
     "param.category": function(newValue, oldValue) {
-			 if (_.isEqual(newValue, oldValue)) return;
+			//  if (_.isEqual(newValue, oldValue)) return;
        this.subMenuList = newValue;
     }
   }

@@ -49,13 +49,12 @@ export default {
 
   computed: {
     carouselList() {
-			debugger
       return _.chunk(this.dataSource, 2);
     }
   },
   watch: {
     "param.data": function(newValue, oldValue) {
-      if (_.isEqual(newValue, oldValue)) return;
+      // if (_.isEqual(newValue, oldValue)) return;
         this.dataSource = newValue;
     }
   }

@@ -59,7 +59,7 @@ export default {
   },
   watch: {
     "param.data": function(newValue, oldValue) {
-      if (_.isEqual(newValue, oldValue)) return;
+      // if (_.isEqual(newValue, oldValue)) return;
       this.dataSource = newValue;
     }
   }

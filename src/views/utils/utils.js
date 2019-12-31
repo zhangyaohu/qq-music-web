@@ -50,3 +50,24 @@ export let getCookie = function(cname) {
      }
   }
 }
+
+export let unescapeHTML =  function(a){
+  let text = document.createElement("div");
+  return text.innerHTML = a,
+  text.innerText || t.textNode || ""
+}
+
+export let copyText = function(targetElm) {
+  Promise.resolve().then(() => {
+    var range = document.createRange();
+    range.selectNode(targetElm);
+    window.getSelection().removeAllRanges();
+    Promise.resolve().then(() => {
+      // var range = document.createRange()
+      range.selectNode(targetElm);
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    })
+  })
+}

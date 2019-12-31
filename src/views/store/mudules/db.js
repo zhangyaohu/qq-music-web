@@ -32,12 +32,11 @@ const actions = {
 
 const mutations = {
   [types.UPDATE_DATA_LIST]: (state, {dataName, data}) => {
+		state[dataName] = [];
 		Vue.set(state, dataName, ...[data])
-		console.log(state);
 	},
 	[types.UPDATE_DATA_OBJ]: (state, {name, data}) => {
 		Vue.set(state, name, data)
-		console.log(state);
 	}
 }
 

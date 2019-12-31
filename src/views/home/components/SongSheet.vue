@@ -22,14 +22,23 @@
       <div>
         <el-carousel :interval="5000" arrow="always" v-if="currentSelectTab!==6">
           <el-carousel-item v-for="(item, i) in 2" :key="i">
-            <li class="carousel-item" v-for="(item, index) in dataSource[i]" :key="index">
+            <li class="carousel-item" 
+                v-for="(item, index) in dataSource[i]" 
+                :key="index" 
+                @click="goToDetail(item)">
               <img :src="item.cover_url_medium" class="carousel_item_image" />
+               <div class="cover_play">
+                <img src="../../images/cover_play.png" style="background-size: 50"/>
+              </div>
             </li>
           </el-carousel-item>
         </el-carousel>
         <el-carousel :interval="5000" arrow="always" v-else>
           <el-carousel-item v-for="(item, i) in 2" :key="i">
-            <li class="carousel-item" v-for="(item, index) in dataSource[i]" :key="index">
+            <li class="carousel-item" 
+                v-for="(item, index) in dataSource[i]" 
+                :key="index"
+                @click="goToDetail(item)">
               <img :src="item.cover" class="carousel_item_image" />
               <div class="cover_play">
                 <img src="../../images/cover_play.png" style="background-size: 50"/>
@@ -113,6 +122,12 @@ export default {
           });
         });
       }
+    },
+    goToDetail(item) {
+       if( this.currentSelectTab !== 6)
+         this.$router.push(`sing_detail/${item.tid}`)
+       else 
+         this.$router.push(`sing_detail/${item.content_id}`)
     }
   },
   watch: {
