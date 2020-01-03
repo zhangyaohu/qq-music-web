@@ -97,7 +97,7 @@ export default {
         {
           title: "歌曲",
           key: "name",
-          width: "65%",
+          width: "60%",
           render: (text, key) => {
             return (
               <div>
@@ -124,7 +124,7 @@ export default {
         },
         {
           title: "时长",
-          width: "10%",
+          width: "15%",
           key: "time_public"
         }
       ],
@@ -295,6 +295,10 @@ export default {
     display: inline-block;
     vertical-align: top;
     width: 20%;
+  }
+
+  &_toolbar{
+    padding: 20px 0px;
   }
 }
 

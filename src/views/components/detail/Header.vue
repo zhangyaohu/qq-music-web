@@ -32,7 +32,7 @@
         <li class="detail_header__content_item_left">
 					<div>
 						<span>专辑</span>
-					  <span>{{sourceData.info.}}</span>
+					  <span>{{sourceData.info.album}}</span>
 					</div>
 					<div>
 						<span>流派</span>
@@ -78,7 +78,6 @@
 
 <script>
 
-import _ from 'lodash';
 import {singleToSize} from 'src/views/utils/utils';
 export default {
 	props: {
@@ -118,16 +117,15 @@ export default {
 	},
 	watch:  {
 		'param': function (newVal, oldVal){
-			if(_.isEqual(newVal, oldVal)) return ;
+			if(this.$_.isEqual(newVal, oldVal)) return ;
 			this.sourceData = newVal;
 		},
 		'comment': function (newVal, oldVal){
-			debugger;
-			if(_.isEqual(newVal, oldVal)) return ;
+			if(this.$_.isEqual(newVal, oldVal)) return ;
 			this.commentTotal = newVal;
 		},
 		'collect': function (newVal, oldVal){
-			if(_.isEqual(newVal, oldVal)) return ;
+			if(this.$_.isEqual(newVal, oldVal)) return ;
 			this.collectNum = newVal;
 		}
 	}

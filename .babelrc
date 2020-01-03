@@ -11,6 +11,7 @@
     "@babel/plugin-transform-runtime",
     "syntax-dynamic-import",
     "transform-vue-jsx",
+    "lodash",
     [
       "component",
       {

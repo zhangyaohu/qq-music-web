@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import HomeApi from "src/views/home/homeApi";
 import Root from "src/views/store/Root";
 
@@ -49,7 +48,7 @@ export default {
 
   computed: {
     carouselList() {
-      return _.chunk(this.dataSource, 2);
+      return this.$_.chunk(this.dataSource, 2);
     }
   },
   watch: {

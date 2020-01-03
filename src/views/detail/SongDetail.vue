@@ -51,7 +51,7 @@ export default {
         {
           title: "歌曲",
           key: "title",
-          width: "50%",
+          width: "45%",
         },
         {
           title: "歌手",
@@ -68,7 +68,7 @@ export default {
         },
         {
           title: "时长",
-          width: "10%",
+          width: "15%",
           key: "time_public"
         }
       ]

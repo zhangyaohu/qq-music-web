@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import {singleToSize} from 'src/views/utils/utils';
 import HomeApi from "src/views/home/homeApi";
 import Root from "src/views/store/Root";
@@ -120,7 +119,7 @@ export default {
   },
   watch: {
     "param.data": function(newValue, oldValue) {
-      if (_.isEqual(newValue, oldValue)) return;
+      if (this.$_.isEqual(newValue, oldValue)) return;
         this.dataSource = newValue;
     }
   }
@@ -169,6 +168,10 @@ export default {
   .title {
     color: #000;
     padding: 10px 0px 3px 10px;
+    max-width: 105px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .number{

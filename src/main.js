@@ -6,6 +6,8 @@ import './index.css';
 import element from 'src/views/element/';
 import store from 'src/views/store/';
 import 'src/views/images/font/iconfont.css'
+const _ =  require('lodash');
+Vue.prototype.$_ = _
 
 Vue.use(VueRouter);
 Vue.use(element);

@@ -7,7 +7,7 @@ const LyricDetailPage = () => import(/*webpackChunkName: "LYRICDETAILPAGE"*/'src
 
 export default [
 	{
-		path: '/',
+		path: '*',
     redirect: '/home'
 	},
 	{

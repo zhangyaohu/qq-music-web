@@ -18,7 +18,9 @@ export default {
 					<ul class="table_header_tr">
 					  {
 						this.columns.map((column, index) => {
-             return <li class="table_header__item" style={{width: column.width}}>{column.title}</li>
+						 return <li class="table_header__item" style={{width: column.width}}>
+											<div class="table_header__item_content">{column.title}</div>
+										</li>
 						})
 				  	}
 					</ul>
@@ -30,9 +32,13 @@ export default {
 							 {
 								 this.columns.map((column, cI) => {
                  if(!column.render){
-									 return <li class="table_body__item" style={{width: column.width}} title={data[column.key]}>{data[column.key]}</li>
+									 return <li class="table_body__item" style={{width: column.width}} title={data[column.key]}>
+													  <div class="table_body__item_content">{data[column.key]}</div>
+													</li>
 								 }else if(column.render){
-									 return <li class="table_body__item" style={{width: column.width}}>{column.render(data, column.key, dI)}</li>
+									 return <li class="table_body__item" style={{width: column.width}}>
+														<div class="table_body__item_content">{column.render(data, column.key, dI)}</div>
+													</li>
 								 }
 						   })
 							 }
@@ -62,13 +68,16 @@ export default {
 
 	 &__item{
 		 display: table-cell;
+		 &_content{
+			 padding: 0px 10px;
+		 }
 	 }
 
 	 &_tr{
 		 table-layout: fixed;
 		 display: table;
 		 width: 100%;
-		 padding: 20px 20px;
+		 padding: 20px 0px;
 		 background-color: #fbfbfd;
 	 }
  }
@@ -84,12 +93,15 @@ export default {
 		 white-space: nowrap;
 		 text-overflow: ellipsis;
 		 overflow: hidden;
+		 &_content{
+			 padding: 0px 10px;
+		 }
 	 }
 
 	 &_tr{
 		 display: table;
 			width: 100%;
-			padding: 20px 20px;
+			padding: 20px 0px;
 			table-layout: fixed;
 		 &:nth-child(2n) {
 			 background-color: #fbfbfd;
