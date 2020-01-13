@@ -5,7 +5,8 @@ import {
 	Carousel,
 	CarouselItem,
 	Icon,
-	Pagination
+	Pagination,
+	Checkbox
 } from 'element-ui';
 import Vue from 'vue';
 
@@ -18,5 +19,6 @@ export default {
 		Vue.use(CarouselItem);
 		Vue.use(Icon);
 		Vue.use(Pagination);
+		Vue.use(Checkbox);
 	}
 }

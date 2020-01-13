@@ -1,7 +1,13 @@
 <template>
 	<div class="song_detail__container">
-		<detail-header :param="songObj" :comment="commentTotal" :collect="collectNum"></detail-header>
-		<Table :columns="columns" :dataSource="songDataSource"></Table>
+		<detail-header :param="songObj" :comment="commentTotal" :collect="collectNum" @play="playAll"></detail-header>
+		<Table :columns="columns" 
+		       :dataSource="songDataSource" 
+					 type="radio"
+					@play="playAll" 
+					@add="addSong" 
+					@download="downLoad" 
+					@share="share"></Table>
 		<comment-component :sourceData="dbData.commentList" :total="commentTotal"></comment-component>
 	</div>
 </template>
@@ -58,7 +64,7 @@ export default {
           key: "singer",
           width: "15%",
           render: (text, key) => {
-            return <span>{text[key][0].name}</span>;
+            return <span>{text[key] && text[key][0].name}</span>;
           }
 				},
 				{
@@ -69,7 +75,10 @@ export default {
         {
           title: "时长",
           width: "15%",
-          key: "time_public"
+					key: "interval",
+					render: (text, key) => {
+						return <span>{(text[key]/60).toFixed(2)}</span>
+					}
         }
       ]
 		}
@@ -125,6 +134,22 @@ export default {
 						"data": resp.comment.commentlist
 				})
 			})
+		},
+    //播放全部
+		playAll() {
+      this.$router.push('/play-list')
+		},
+		//添加歌曲
+		addSong() {
+
+		},
+		//下载歌曲
+		downLoad() {
+
+		},
+		//分享歌曲
+		share() {
+
 		}
 	}
 }

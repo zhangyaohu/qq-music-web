@@ -5,7 +5,8 @@ import router from 'src/router/';
 import './index.css';
 import element from 'src/views/element/';
 import store from 'src/views/store/';
-import 'src/views/images/font/iconfont.css'
+import 'src/views/images/font/iconfont.css';
+import './variable.less';
 const _ =  require('lodash');
 Vue.prototype.$_ = _
 

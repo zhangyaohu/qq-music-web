@@ -1,14 +1,16 @@
 const webpackBase = require('./webpack.base');
 const webpackMerge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 //合并base，dev配置
 module.exports = webpackMerge(webpackBase, {
   mode: 'development',//打包模式指定开发环境
   devtool: 'eval-source-map',//打包的devtool是否是源码
   devServer: {//webpack-dev-server配置
-    port: process.env.PORT,//端口
+    port: process.env.PORT ? process.env.PORT : 7777,//端口
     host: '0.0.0.0',//主机
-    open: `http://localhost:${process.env.PORT}`,//浏览器打开的路径
+    open: `http://localhost:${process.env.PORT ? process.env.PORT : 7777}`,//浏览器打开的路径
     stats: {
       hash: false,
       builtAt: false,
@@ -36,7 +38,13 @@ module.exports = webpackMerge(webpackBase, {
   plugins: [
     //热模块更新插件
     new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin([
+  
+    ]),
     //定义生产环境参数插件
-    new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("development") }),
+    new webpack.DefinePlugin({ 
+      'QQ_THEME': JSON.stringify(process.env.QQ_THEME || 'dark'),
+      "process.env.NODE_ENV": JSON.stringify("development")
+    }),
   ]
 })

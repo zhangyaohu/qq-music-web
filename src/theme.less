@@ -1,0 +1,89 @@
+.theme(@bgColor: #fff, @color: #000, @borderColor: #000) {
+	.playlist_content{
+		background: transparent!important;
+	}
+	.table_header{
+		width: 100%;
+		overflow: hidden;
+		color: @color;
+		&__item{
+			display: table-cell;
+			 
+			&_content{
+				padding: 0px 10px;
+			}
+		}
+		&_tr{
+			table-layout: fixed;
+			display: table;
+			width: 100%;
+			padding: 20px 0px;
+			border-bottom: 1px solid @borderColor;
+		}
+	}
+	.table_body{
+		display: block;
+		width: 100%;
+		table-layout: fixed;
+		overflow: hidden;
+		color: @color;
+		&__item{
+			display: table-cell;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			
+			.checkbox{
+       text-align: center!important;
+			}
+
+			&_content{
+				padding: 0px 10px;
+			}
+		}
+		&_tr{
+			display: table;
+			 width: 100%;
+			 padding: 20px 0px;
+			 table-layout: fixed;
+			 border-bottom: 1px solid @borderColor;
+			 position: relative;
+
+			 &:hover{
+				 .play{
+					 display: block;
+				 }
+			 }
+
+			 .play{
+				position: absolute;
+				display: none;
+				width: 100%;
+				vertical-align: middle;
+				top: 9px;
+				left: 25%;
+				font-size: 28px;
+				 
+				 &_btn{
+					 border-radius: 100%;
+					 display: inline-block;
+					 border: 1px solid @borderColor;
+					 width: 40px;
+					 height:40px;
+					 margin: 0px 10px;
+					 cursor: pointer;
+					 text-align: center;
+					 &:hover{
+						 color: #31c27c;
+					 }
+				 }
+			 }
+			&:nth-child(2n) {
+				background-color: @bgColor;
+			}
+			&:nth-child(2n + 1) {
+				background-color: @bgColor;
+			}
+		}
+	}
+}

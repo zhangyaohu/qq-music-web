@@ -22,7 +22,7 @@ const cdn = [
 ]
 const portfinder = require('portfinder');
 //devserver端口
-portfinder.basePort = process.env.PORT && process.env.PORT || 7777;
+portfinder.port = process.env.PORT && process.env.PORT || 7777;
 //webpack打包时的node_modules的路径
 const publicPath = isEnvProduction
   ? '/'
@@ -38,16 +38,18 @@ portfinder.getPort((err, port) => {
 
   }
 })
+
+		//分离css文件的插件
 module.exports = {
 	entry: {
-    main: resolve('./src/main.js')//入口文件
+		main: resolve('./src/main.js'),//入口文
 	},
 	output: {
     publicPath: publicPath,//打包后生成的路径中的公共路径
 		path: resolve('./dist'),//打包之后生成的存储文件的文件夹
     filename: isEnvProduction
 		? 'js/[name].[contenthash:8].js'
-		: isEnvDevelopment && 'js/bundle.js',//生成的文件名称
+		: isEnvDevelopment && 'js/bundle.[name].js',//生成的文件名称
     chunkFilename: isEnvProduction ? 'js/chunk-[chunkhash].js' : 'js/[name].js'//生成的模块文件名称用于异步加载对应的chunk
 	},
   module: {
@@ -64,7 +66,7 @@ module.exports = {
 			},
 			//打包.less文件
 			{
-				test: /\.(less)$/g,
+				test: /\.(less)$/,
 				exclude: /node_modules/,
 				use: [
 					isEnvProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
@@ -83,10 +85,10 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              esModule: false,
-              name: 'font/[name].[hash:8].[ext]',
+							limit: 1000,
+							name: 'font/[name].[hash:8].[ext]',
             }
-          }
+					}
 				]
 			},
 			//匹配打包vue文件
@@ -117,13 +119,11 @@ module.exports = {
 					{
 						loader: 'url-loader',
 						options: {
-							esModule: false,
-              name: 'img/[name].[hash:8].[ext]',
-              options: {
-								name: '[name].[hash:8].[ext]',
-              }
+							  esModule: false,
+							  limit: 1000,
+								name: 'img/[name].[hash:8].[ext]',
 					  }
-					},
+					}
 				],
 	  	}
 		]
@@ -157,7 +157,8 @@ module.exports = {
 			template: 'public/index.html',//模板路径
 			inject: true,//将打包过后的js注入到index.html的后面
 			cdn,
-      chunksSortMode: 'dependency',
+			chunksSortMode: 'dependency',
+			chunks: ['main'],
 			minify: isEnvProduction ?  {
             removeComments: true,
             collapseWhitespace: true,
@@ -171,14 +172,13 @@ module.exports = {
             minifyURLs: true,
           } : undefined,
 		}),
-		//分离css文件的插件
-	 new MiniCssExtractPlugin({
+    new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
       filename: 'css/[name].css',//插件名
       chunkFilename: 'css/chunk-[chunkhash][name].css',//插件名
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
-		}),
+			ignoreOrder: false, // Enable to remove warnings about conflicting order
+	}),
 		//分离lodash库
 		new LodashWebpackPlugin()
 	]

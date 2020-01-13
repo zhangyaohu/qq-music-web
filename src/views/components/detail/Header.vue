@@ -55,7 +55,7 @@
 				</li>
       </ul>
       <div>
-        <span class="detail_header__btn play">
+        <span class="detail_header__btn play" @click="$emit('play')">
 					 <i class="el-icon-caret-right"></i>
 					播放全部
 				</span>

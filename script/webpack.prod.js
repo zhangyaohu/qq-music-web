@@ -9,14 +9,14 @@ const path = require('path');
 //合并base，product配置
 module.exports = webpackMerge(webpackBase, {
   mode: 'production',//申明为生产环境
-  devtool: 'cheap-source-map',//压缩源码使得看不到源码
+  //devtool: 'cheap-source-map',//压缩源码使得看不到源码
   optimization: {
     minimizer: [
       //优化请求设置缓存是否压缩源码
       new TerserPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true, // Must be set to true if using source-maps in production
+        sourceMap: false, // Must be set to true if using source-maps in production
         terserOptions: {
           // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
         }
@@ -68,24 +68,24 @@ module.exports = webpackMerge(webpackBase, {
       minChunkSize: 1000//最小分割大小
     }),
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
-    // new ManifestPlugin({
-    //   fileName: 'asset-manifest.json',
-    //   publicPath: './',
-    //   generate: (seed, files, entrypoints) => {
-    //     const manifestFiles = files.reduce((manifest, file) => {
-    //       manifest[file.name] = file.path;
-    //       return manifest;
-    //     }, seed);
-    //     const entrypointFiles = entrypoints.main.filter(
-    //       fileName => !fileName.endsWith('.map')
-    //     );
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+      publicPath: './',
+      generate: (seed, files, entrypoints) => {
+        const manifestFiles = files.reduce((manifest, file) => {
+          manifest[file.name] = file.path;
+          return manifest;
+        }, seed);
+        const entrypointFiles = entrypoints.main.filter(
+          fileName => !fileName.endsWith('.map')
+        );
 
-    //     return {
-    //       files: manifestFiles,
-    //       entrypoints: entrypointFiles,
-    //     };
-    //   },
-    // }),
+        return {
+          files: manifestFiles,
+          entrypoints: entrypointFiles,
+        };
+      },
+    }),
   ]
 })
 
