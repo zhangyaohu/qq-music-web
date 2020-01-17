@@ -12,8 +12,8 @@
       <div class="comment_zone__submit">
         <span class="emoj_content">
           <img src="~images/emoj.jpg" class="emoj" @click="showEmoji = !showEmoji" />
-          <div class="emoj_png" v-if="showEmoji">
-            <VEmojiPicker @select="selectEmoji" />
+          <div class="emoj_png" v-show="showEmoji">
+            <VEmojiPicker @select="selectEmoji" ref="vEmoji"/>
           </div>
         </span>
         <span class="comment_zone__btn">发表评论</span>
@@ -67,6 +67,12 @@ export default {
   components: {
     VEmojiPicker
   },
+  mounted() {
+    this.$refs.vEmoji.$el.addEventListener('mouseleave', () => {
+      debugger
+      this.showEmoji = false;
+    })
+  },
   methods: {
     selectEmoji(emoji) {
       this.commentText += emoji.data;
@@ -84,6 +90,11 @@ export default {
 		handlePraise(comment) {
 			this.$emit('on-change', {type: 'praise', item: comment})
 		}
+  },
+  destroyed() {
+     this.$refs.vEmoji.$el.removeEventListener('mouseleave', () => {
+      this.showEmoji = false;
+    })
   }
 };
 </script>
