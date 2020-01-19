@@ -57,7 +57,26 @@ export default {
         {
           title: "歌曲",
           key: "title",
-          width: "45%",
+					width: "45%",
+					 render: (text, key) => {
+            return (<div>
+              <span>{text[key]}</span>
+               <li class="play">
+                  <span class='play_btn' onClick={() => this.playAll(text)}>
+                    { this.playId === text.mid && this.isPlay ? <i class="el-icon-video-pause"></i> : <i class="el-icon-video-play"></i>}
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('add')}>
+                     <i class="el-icon-plus"></i>
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('download')}>
+                     <i class="el-icon-download"></i>
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('share')}>
+                     <i class="el-icon-share"></i>
+                  </span>
+                </li>
+            </div>);
+          }
         },
         {
           title: "歌手",
@@ -77,7 +96,7 @@ export default {
           width: "15%",
 					key: "interval",
 					render: (text, key) => {
-						return <span>{(text[key]/60).toFixed(2)}</span>
+						return <span>{text[key] && (text[key]/60).toFixed(2)}</span>
 					}
         }
       ]
