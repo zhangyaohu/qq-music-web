@@ -133,6 +133,9 @@ export default {
            doc.src = `http://isure.stream.qqmusic.qq.com/${mid}?guid=${param.guid}&vkey=${param.vkey}&uin=0&fromtag=66`;
            doc.setAttribute('autoplay', 'autoplay');
            doc.setAttribute('controls', "controls");
+           doc.style.height= '0px';
+           doc.style.width= '0px';
+           doc.style.display= 'none';
            if(doc.getAttribute('id') !== `play${item.mid}`)
              doc.setAttribute('id',  `play${item.mid}`)
              document.body.append(doc);
