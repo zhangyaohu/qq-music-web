@@ -47,20 +47,6 @@ export default {
           {this.dataSource.map((data, dI) => {
             return (
               <ul class="table_body_tr">
-                <li class="play">
-                  <span class='play_btn' onClick={() => this.$emit('play')}>
-                    <i class="el-icon-video-play"></i>
-                  </span>
-                  <span class='play_btn' onClick={() => this.$emit('add')}>
-                     <i class="el-icon-plus"></i>
-                  </span>
-                  <span class='play_btn' onClick={() => this.$emit('download')}>
-                     <i class="el-icon-download"></i>
-                  </span>
-                  <span class='play_btn' onClick={() => this.$emit('share')}>
-                     <i class="el-icon-share"></i>
-                  </span>
-                </li>
                 {this.type === "selection" ? (
                   <li class="table_body__item checkbox">
                     <el-checkbox

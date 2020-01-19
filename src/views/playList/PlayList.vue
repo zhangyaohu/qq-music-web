@@ -13,7 +13,7 @@
           清空列表
         </span>
       </div>
-      <Table :dataSource="dataSource" :columns="columns" type="selection"></Table>
+      <Table :dataSource="dataSource" :columns="columns" type="selection" @play="play"></Table>
     </div>
     <div class="playlist_mask"></div>
     <div class="playlist_bg"></div>
@@ -23,6 +23,7 @@
 <script>
 import Table from "src/views/components/table/Table";
 import Root from "src/views/store/Root";
+import PlayListApi from './playListApi';
 
 export default {
   name: "PlayList",
@@ -41,13 +42,15 @@ export default {
   },
   data() {
     return {
+      playId: '',
+      isPlay: false,
       columns: [
         {
           title: "",
           key: "index_album",
           width: "10%",
           render: (text, key, dI) => {
-            return dI + 1;
+            return this.playId === text.mid && this.isPlay ? <span class="el-icon-video-play"></span> : <div>{dI + 1}</div>;
           }
         },
         {
@@ -60,7 +63,23 @@ export default {
           key: "singer",
           width: "15%",
           render: (text, key) => {
-            return <span>{text[key][0].name}</span>;
+            return (<div>
+              <span>{text[key][0].name}</span>
+               <li class="play">
+                  <span class='play_btn' onClick={() => this.play(text)}>
+                    { this.playId === text.mid && this.isPlay ? <i class="el-icon-video-pause"></i> : <i class="el-icon-video-play"></i>}
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('add')}>
+                     <i class="el-icon-plus"></i>
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('download')}>
+                     <i class="el-icon-download"></i>
+                  </span>
+                  <span class='play_btn' onClick={() => this.$emit('share')}>
+                     <i class="el-icon-share"></i>
+                  </span>
+                </li>
+            </div>);
           }
         },
         {
@@ -81,6 +100,48 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+     async play(item) {
+      let  mid = `C400${item.mid}.m4a`
+      let resp = await PlayListApi.getSongVkey({
+        filename: mid, 
+        format: 'jsonp',
+        platform: 'yqq',
+        cid: '205361747',
+        guid: '5931742855',
+        songmid: item.mid
+        })
+        console.log(resp)
+         let  param = {
+          guid: 5931742855,
+          vkey: resp.data.items[0].vkey,
+          uin: 0,
+          fromtag: 66
+         }
+         PlayListApi.play(resp.data.items[0].filename, param)
+         .then((resp) => {
+             let playId  = document.querySelector(`#play${item.mid}`)
+           if(this.isPlay) {
+             if(playId)
+              playId.pause();
+              this.isPlay = false;
+           }else if(!this.isPlay && !playId){
+           this.playId = item.mid;
+           this.isPlay = true;
+            let doc = document.createElement('audio');
+           doc.src = `http://isure.stream.qqmusic.qq.com/${mid}?guid=${param.guid}&vkey=${param.vkey}&uin=0&fromtag=66`;
+           doc.setAttribute('autoplay', 'autoplay');
+           doc.setAttribute('controls', "controls");
+           if(doc.getAttribute('id') !== `play${item.mid}`)
+             doc.setAttribute('id',  `play${item.mid}`)
+             document.body.append(doc);
+           }else if(!this.isPlay) {
+             playId.play();
+             this.isPlay = true;
+           }
+         })
+    }
   }
 };
 </script>
@@ -106,8 +167,9 @@ export default {
 
   &_container {
     min-width: 1100px;
-    background-color: rgb(41, 42, 43);
-    height: 100%;
+    background-color: #292a2b;
+    min-height: 100%;
+    overflow: hidden;
   }
 
   &_content {
@@ -165,6 +227,10 @@ export default {
   background-repeat: no-repeat;
   background-size: 50px;
   background-position: -16px 2px;
+}
+
+.play_icon{
+  background-image: url("~images/play.gif")
 }
 </style>
 

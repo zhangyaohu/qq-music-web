@@ -91,7 +91,7 @@ export default {
 			this.$emit('on-change', {type: 'praise', item: comment})
 		}
   },
-  destroyed() {
+  beforeDestroyed() {
      this.$refs.vEmoji.$el.removeEventListener('mouseleave', () => {
       this.showEmoji = false;
     })

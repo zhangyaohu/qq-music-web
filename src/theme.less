@@ -1,4 +1,4 @@
-.theme(@bgColor: #fff, @color: #000, @borderColor: #000) {
+.theme(@bgColor: #fff, @color: #000, @borderColor: #000, @headerTrColor:#fbfbfd, @bodyTrColorEven: rgba(0,0,0,.01), @bodyTrColorOdd: #fff ) {
 	.playlist_content{
 		background: transparent!important;
 	}
@@ -19,6 +19,7 @@
 			width: 100%;
 			padding: 20px 0px;
 			border-bottom: 1px solid @borderColor;
+			background: @headerTrColor;
 		}
 	}
 	.table_body{
@@ -79,10 +80,10 @@
 				 }
 			 }
 			&:nth-child(2n) {
-				background-color: @bgColor;
+				background-color: @bodyTrColorEven;
 			}
 			&:nth-child(2n + 1) {
-				background-color: @bgColor;
+				background-color: @bodyTrColorOdd;
 			}
 		}
 	}
